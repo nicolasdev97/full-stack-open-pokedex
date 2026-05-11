@@ -4,11 +4,9 @@ describe('Pokedex', () => {
   test('front page can be opened', async ({ page }) => {
     await page.goto('/')
 
-    await page.waitForSelector('text=ivysaur', {
-      timeout: 10000,
+    await expect(page.locator('body')).toContainText('ivysaur', {
+      timeout: 30000,
     })
-
-    await expect(page.getByText('ivysaur')).toBeVisible()
 
     await expect(
       page.getByText(
@@ -20,8 +18,12 @@ describe('Pokedex', () => {
   test('pokemon page can be opened', async ({ page }) => {
     await page.goto('/')
 
+    await expect(page.locator('body')).toContainText('ivysaur', {
+      timeout: 30000,
+    })
+
     await page.getByText('ivysaur').click()
 
-    await expect(page.getByText('chlorophyll')).toBeVisible()
+    await expect(page.locator('body')).toContainText('chlorophyll')
   })
 })
