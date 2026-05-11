@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  lint:
+  pipeline:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,3 +21,9 @@ jobs:
 
       - name: Run ESLint
         run: npm run eslint
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
